@@ -1,0 +1,7 @@
+{
+  "src/loadable.js": {
+    "file": "loadable.js",
+    "isEntry": true,
+    "src": "src/loadable.js"
+  }
+}

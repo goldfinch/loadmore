@@ -1,0 +1,10 @@
+---
+Name: goldfinch-loadable-routes
+After:
+  - '#rootroutes'
+  - '#coreroutes'
+---
+
+SilverStripe\Control\Director:
+  rules:
+    'api/loadable': App\Controllers\loadable

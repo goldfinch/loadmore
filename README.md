@@ -1,3 +1,20 @@
+app/_config/loadable.yml
+```
+---
+Name: app-loadable
+---
+
+Goldfinch\Loadable\Loadable:
+  loadable:
+    App\Models\MyModel...:
+      initial_loaded: 10
+      per_each_load: 10
+
+```
+
+templates/{theme}/Loadable/MyModel....ss
+
+
 ```
 public static function loadable($params, $request, $config)
 {
