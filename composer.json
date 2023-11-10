@@ -1,5 +1,5 @@
 {
-    "name": "goldfinch/loadmore",
+    "name": "goldfinch/loadable",
     "description": "",
     "type": "silverstripe-vendormodule",
     "keywords": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Goldfinch\\Loadmore\\": "src/"
+            "Goldfinch\\Loadable\\": "src/"
         }
     },
     "minimum-stability": "dev",
