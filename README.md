@@ -87,3 +87,12 @@ Add to header:
 
 </div>
 ```
+
+app.js
+```
+import Loadable from '..../vendor/goldfinch/loadable/client/src/src/loadable-mod';
+
+document.addEventListener('DOMContentLoaded', () => {
+  new Loadable();
+});
+```
