@@ -5,10 +5,10 @@ namespace Goldfinch\Loadable;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Control\Director;
+use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\CMS\Model\SiteTree;
 
-class Loadable extends SiteTree
+class Loadable extends Controller
 {
     private static $allowed_actions = [
         'fetch',

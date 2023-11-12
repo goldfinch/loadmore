@@ -18,7 +18,12 @@ templates/{theme}/Loadable/MyModel....ss
 ```
 public static function loadable($params, $request, $config)
 {
-    return Project::get()->limit($params['limit'], $params['start']);
+    return Project::get(); // ->limit($params['limit'], $params['start']);
+}
+
+public function loadableTemplate()
+{
+    return $this->renderWith('Loadable/ProjectItem');
 }
 ```
 

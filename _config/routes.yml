@@ -7,4 +7,4 @@ After:
 
 SilverStripe\Control\Director:
   rules:
-    'api/loadable': App\Controllers\loadable
+    'api/loadable': Goldfinch\Loadable\Loadable

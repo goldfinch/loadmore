@@ -27,7 +27,7 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
 
     private static function LoadableFetch($class)
     {
-        $config = ss_config('Goldfinch\Loadable\Loadmore', 'loadable');
+        $config = ss_config('Goldfinch\Loadable\Loadable', 'loadable');
 
         if ($config && isset($config[$class]))
         {
