@@ -15,6 +15,8 @@ Goldfinch\Loadable\Loadable:
 templates/{theme}/Loadable/MyModel....ss
 
 
+
+1) Option one (manually added to the object)
 ```
 public static function loadable($params, $request, $config)
 {
@@ -25,6 +27,13 @@ public function loadableTemplate()
 {
     return $this->renderWith('Loadable/ProjectItem');
 }
+```
+
+2) Option two (via extension)
+```
+Goldfinch\Component\Projects\Models\Nest\ProjectItem:
+  extensions:
+    - Goldfinch\Loadable\Extensions\LoadableExtension
 ```
 
 APP_KEY=""
