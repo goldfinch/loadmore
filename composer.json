@@ -16,6 +16,11 @@
         "goldfinch/helpers": "dev-master"
 
     },
+    "extra": {
+        "expose": [
+            "client/dist"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Goldfinch\\Loadable\\": "src/"
