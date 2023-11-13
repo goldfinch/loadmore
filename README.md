@@ -97,6 +97,7 @@ Add to header:
 </div>
 ```
 
+1) Option one (import)
 app.js
 ```
 import Loadable from '..../vendor/goldfinch/loadable/client/src/src/loadable-mod';
@@ -104,4 +105,13 @@ import Loadable from '..../vendor/goldfinch/loadable/client/src/src/loadable-mod
 document.addEventListener('DOMContentLoaded', () => {
   new Loadable();
 });
+```
+
+2) Option two (Silverstripe requirement)
+```
+<% require javascript('goldfinch/loadable:client/dist/loadable.js') %>
+```
+or
+```
+Requirements::javascript('goldfinch/loadable:client/dist/loadable.js');
 ```
