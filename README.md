@@ -77,8 +77,6 @@ Add to header:
       <div>
         <button
           data-loadable-action
-          data-loadable-before-load="console.log('start loading')"
-          data-loadable-after-load="console.log(response)"
           data-loadable-params='{"search": "some search value"}'
           data-loadable-stock="{$LoadableObject}"
           data-loadable-scroll-offset="100"
@@ -95,6 +93,17 @@ Add to header:
   <% end_with %>
 
 </div>
+```
+
+events
+```
+window.goldfinch.loadmore_before_callback = (action) => {
+  console.log('loadmore before', action)
+}
+
+window.goldfinch.loadmore_after_callback = (action) => {
+  console.log('loadmore after', action)
+}
 ```
 
 1) Option one (import)

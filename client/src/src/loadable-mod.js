@@ -55,8 +55,6 @@ class Loadable {
 
     this.actionInProgress(action, true)
 
-    var beforeLoad = action.attr('data-loadable-before-load');
-    var afterLoad = action.attr('data-loadable-after-load');
     var params = action.attr('data-loadable-params');
     var stock = action.attr('data-loadable-stock');
     var scrollOffset = action.attr('data-loadable-scroll-offset');
@@ -65,7 +63,10 @@ class Loadable {
     var currentItemsCount = list.find('[data-loadable-list-item]').length;
     var countRemains = list.attr('data-loadable-remains');
 
-    eval(beforeLoad)
+    // callback
+    if (window.goldfinch && window.goldfinch.loadmore_before_callback) {
+      window.goldfinch.loadmore_before_callback(action);
+    }
 
     params = JSON.parse(params);
     params['start'] = currentItemsCount;
@@ -113,7 +114,10 @@ class Loadable {
             }
           }
 
-          eval(afterLoad)
+          // callback
+          if (window.goldfinch && window.goldfinch.loadmore_after_callback) {
+            window.goldfinch.loadmore_after_callback(action);
+          }
 
         }
       })

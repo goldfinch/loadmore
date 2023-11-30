@@ -1,7 +1,5 @@
 <button
   data-loadable-action
-  data-loadable-before-load="console.log('start loading')"
-  data-loadable-after-load="console.log(response)"
   data-loadable-params='{"search": "some search value"}'
   data-loadable-stock="{$LoadableObject}"
   data-loadable-scroll-offset="10"
