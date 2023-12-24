@@ -19,7 +19,7 @@ composer require goldfinch/loadable
 
 #### 2. Add key to your **.env**
 
-To generate the key use [Taz](https://github.com/goldfinch/taz) with the following command `php taz generate:crypto-key` or run php line instead `php bin2hex(random_bytes(16))`
+To generate the key use [Taz](https://github.com/goldfinch/taz) with the following command `php taz generate:crypto-key` or run in php instead `bin2hex(random_bytes(16))`
 
 ```bash
 APP_KEY=""
