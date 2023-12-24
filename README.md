@@ -10,33 +10,33 @@ Load more implementation for Silverstripe with front-end component.
 
 ## Install
 
-1. Install module
+#### 1. Install module
 ```
 composer require goldfinch/loadable
 ```
 
-2. Add key to your `.env`. To generate the key use [Taz](https://github.com/goldfinch/taz) with the following command `php taz generate:crypto-key` or run php line instead `bin2hex(random_bytes(16))`
+#### 2. Add key to your `.env`. To generate the key use [Taz](https://github.com/goldfinch/taz) with the following command `php taz generate:crypto-key` or run php line instead `php bin2hex(random_bytes(16))`
 
 ```bash
 APP_KEY=""
 ```
 
-3. Copy config file and amend it as you need
+#### 3. Copy config file and amend it as you need
 ```bash
 cp vendor/goldfinch/loadable/_config/loadable.yml.example app/_config/loadable.yml
 ```
 
-3. Prepare your loadable model
+#### 4. Prepare your loadable model
 
-#### Via extension (recommended)
+*via extension (recommended)*
 
-```php
+```yml
 App\Models\MyLoadableModel:
   extensions:
     - Goldfinch\Loadable\Extensions\LoadableExtension
 ```
 
-#### Manually
+*manually*
 
 ```php
     public static function loadable($params, $request, $config)
@@ -50,28 +50,28 @@ App\Models\MyLoadableModel:
     }
 ```
 
-4. Make sure these meta tags are presented in your header
+#### 5. Make sure these meta tags are presented in your header
 
 ```html
 <meta name="csrf-param" content="authenticity_token">
 <meta name="csrf-token" content="{$SecurityID}">
 ```
 
-5. Implemenet JavaScript component that will handle loadmore features
+#### 6. Implemenet JavaScript component that will handle loadmore features
 
-#### via Silverstripe Requirements PHP
+*via Silverstripe Requirements PHP*
 
 ```php
 Requirements::javascript('goldfinch/loadable:client/dist/loadable.js');
 ```
 
-#### via Silverstripe Requirements template
+*via Silverstripe Requirements template*
 
 ```html
 <% require javascript('goldfinch/loadable:client/dist/loadable.js') %>
 ```
 
-#### via ES6 module
+*via ES6 module*
 
 ```js
 import Loadable from '..../vendor/goldfinch/loadable/client/src/src/loadable-mod';
@@ -81,22 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-6. Create template in `templates/Loadable`. The name should be the same as your targeted model's name.
+#### 7. Create template in `templates/Loadable`. The name should be the same as your targeted model's name.
 
-Example for `app/Models/MyLoadableModel.php`:
+*Example for* `app/Models/MyLoadableModel.php`
 
 ```bash
 touch themes/my_theme/templates/Loadable/MyLoadableModel.ss
 ```
 
-The content of each template must start with a tag that has `data-loadable-list-item` attribute which indicates a single loadable item.
+(❗) The content in each template must start with a tag that has `data-loadable-list-item` attribute which represents a single loadable item
 
 ```html
 <div data-loadable-list-item>
   <!-- my custom code goes here -->
+</div>
 ```
 
-real-case example:
+*Real-case example:*
 
 ```html
 <a href="{$Link}" data-loadable-list-item>
@@ -162,7 +163,7 @@ $Loadable(App\Models\MyLoadableModel)
 
 Available callback events
 
-```
+```js
 window.goldfinch.loadmore_before_callback = (action) => {
   console.log('loadmore before', action)
 
