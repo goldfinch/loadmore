@@ -23,7 +23,7 @@ To generate the key use [Taz](https://github.com/goldfinch/taz) with the followi
 APP_KEY=""
 ```
 
-#### 3. Copy config file and amend it as you need
+#### 3. Copy the config file and amend it as you need
 
 ```bash
 cp vendor/goldfinch/loadable/_config/loadable.yml.example app/_config/loadable.yml
@@ -60,7 +60,7 @@ public function loadableTemplate()
 <meta name="csrf-token" content="{$SecurityID}">
 ```
 
-#### 6. Implemenet JavaScript front-end component
+#### 6. Implement JavaScript front-end component
 
 *via Silverstripe Requirements PHP*
 
@@ -68,7 +68,7 @@ public function loadableTemplate()
 Requirements::javascript('goldfinch/loadable:client/dist/loadable.js');
 ```
 
-*via Silverstripe Requirements template*
+*via template require*
 
 ```html
 <% require javascript('goldfinch/loadable:client/dist/loadable.js') %>
@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-#### 7. Create loadable template
+#### 7. Create a loadable template
 
-All loadable templates stroed within a single folder `templates/Loadable`. The name should be the same as your targeted model's name.
+All loadable templates are stored within a single folder `templates/Loadable`. The name should be the same as your targeted model's name.
 
 *Loadable template for* `app/Models/MyLoadableModel.php` *would be* `themes/my_theme/templates/Loadable/MyLoadableModel.ss`
 
@@ -109,7 +109,7 @@ All loadable templates stroed within a single folder `templates/Loadable`. The n
 
 ## Usage
 
-To display loadable area use one of the examples below for further customization
+To display the loadable area use one of the examples below for further customization
 
 #### Method 1 (quick preview)
 
