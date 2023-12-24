@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/goldfinch/loadable.svg?labelColor=333&color=F8C630&label=Downloads)](https://packagist.org/packages/spatie/schema-org)
 [![License](https://img.shields.io/packagist/l/goldfinch/loadable.svg?labelColor=333&color=F8C630&label=License)](https://packagist.org/packages/spatie/schema-org) 
 
-Load more implementation ⏳ for Silverstripe with front-end component 🌀
+Load more implementation ⏳ for Silverstripe with front-end component 🌀. Easy to use and customize.
 
 ## Install
 
