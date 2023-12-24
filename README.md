@@ -15,13 +15,16 @@ Load more implementation ⏳ for Silverstripe with front-end component 🌀
 composer require goldfinch/loadable
 ```
 
-#### 2. Add key to your `.env`. To generate the key use [Taz](https://github.com/goldfinch/taz) with the following command `php taz generate:crypto-key` or run php line instead `php bin2hex(random_bytes(16))`
+#### 2. Add key to your **.env**
+
+To generate the key use [Taz](https://github.com/goldfinch/taz) with the following command `php taz generate:crypto-key` or run php line instead `php bin2hex(random_bytes(16))`
 
 ```bash
 APP_KEY=""
 ```
 
 #### 3. Copy config file and amend it as you need
+
 ```bash
 cp vendor/goldfinch/loadable/_config/loadable.yml.example app/_config/loadable.yml
 ```
@@ -39,15 +42,15 @@ App\Models\MyLoadableModel:
 *manually*
 
 ```php
-    public static function loadable($params, $request, $config)
-    {
-        return MyLoadableModel::get(); // ->limit($params['limit'], $params['start']);
-    }
+public static function loadable($params, $request, $config)
+{
+    return MyLoadableModel::get(); // ->limit($params['limit'], $params['start']);
+}
 
-    public function loadableTemplate()
-    {
-        return $this->renderWith('Loadable/MyLoadableModel');
-    }
+public function loadableTemplate()
+{
+    return $this->renderWith('Loadable/MyLoadableModel');
+}
 ```
 
 #### 5. Make sure these meta tags are presented in your header
@@ -57,7 +60,7 @@ App\Models\MyLoadableModel:
 <meta name="csrf-token" content="{$SecurityID}">
 ```
 
-#### 6. Implemenet JavaScript component that will handle loadmore features
+#### 6. Implemenet JavaScript front-end component
 
 *via Silverstripe Requirements PHP*
 
@@ -81,13 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-#### 7. Create template in `templates/Loadable`. The name should be the same as your targeted model's name.
+#### 7. Create loadable template
 
-*Example for* `app/Models/MyLoadableModel.php`
+All loadable templates stroed within a single folder `templates/Loadable`. The name should be the same as your targeted model's name.
 
-```bash
-touch themes/my_theme/templates/Loadable/MyLoadableModel.ss
-```
+*Loadable template for* `app/Models/MyLoadableModel.php` *would be* `themes/my_theme/templates/Loadable/MyLoadableModel.ss`
 
 (❗) The content in each template must start with a tag that has `data-loadable-list-item` attribute which represents a single loadable item
 
@@ -161,7 +162,7 @@ $Loadable(App\Models\MyLoadableModel)
 
 ## Events
 
-Available callback events
+Available JavaScript callback events
 
 ```js
 window.goldfinch.loadmore_before_callback = (action) => {
