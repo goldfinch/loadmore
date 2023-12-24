@@ -8,6 +8,8 @@
 
 Load more implementation ⏳ for Silverstripe with front-end component 🌀. Easy to use and customize.
 
+![Screenshot](screenshots/loadmore.jpeg)
+
 ## Install
 
 #### 1. Install module
