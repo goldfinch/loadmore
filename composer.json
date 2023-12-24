@@ -1,9 +1,16 @@
 {
     "name": "goldfinch/loadable",
-    "description": "",
+    "description": "Load more implementation for Silverstripe with front-end component",
     "type": "silverstripe-vendormodule",
     "keywords": [
-        "silverstripe"
+        "silverstripe",
+        "loadmore",
+        "loadable",
+        "loadmore-silverstripe",
+        "loadable-silverstripe",
+        "load-more",
+        "loadable-dataobject",
+        "loadmore-dataobject"
     ],
     "license": "MIT",
     "authors": [{
