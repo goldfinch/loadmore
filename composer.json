@@ -14,7 +14,8 @@
     ],
     "license": "MIT",
     "authors": [{
-        "name": "Artem Karasev"
+        "name": "Art Karasev",
+        "email": "art.karasev@proton.me"
     }],
     "require": {
         "php": ">=8.0",
