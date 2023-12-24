@@ -23,11 +23,13 @@ To generate the key use [Taz](https://github.com/goldfinch/taz) with the followi
 APP_KEY=""
 ```
 
-#### 3. Copy the config file and amend it as you need
+#### 3. Copy the config file
 
 ```bash
 cp vendor/goldfinch/loadable/_config/loadable.yml.example app/_config/loadable.yml
 ```
+
+and amend it as you need
 
 #### 4. Prepare your loadable model
 
