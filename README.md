@@ -90,7 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 All loadable templates are stored within a single folder `templates/Loadable`. The name should be the same as your targeted model's name.
 
-*Loadable template for* `app/Models/MyLoadableModel.php` *would be* `themes/my_theme/templates/Loadable/MyLoadableModel.ss`
+*Example:*
+
+Loadable template for `app/Models/MyLoadableModel.php`
+would be `themes/my_theme/templates/Loadable/MyLoadableModel.ss`
 
 (❗) The content in each template must start with a tag that has `data-loadable-list-item` attribute which represents a single loadable item
 
@@ -111,9 +114,9 @@ All loadable templates are stored within a single folder `templates/Loadable`. T
 
 ## Usage
 
-To display the loadable area use one of the examples below for further customization
+To call the loadable area use one of the examples below for further customization
 
-#### Method 1 (quick preview)
+#### Method 1 (quick preview for test)
 
 ```html
 $Loadable(App\Models\MyLoadableModel)
