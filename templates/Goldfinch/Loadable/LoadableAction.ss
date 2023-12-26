@@ -7,6 +7,9 @@
   class="btn btn-primary"
   type="button"
 >
-  <span class="d-none spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span
+    class="d-none spinner-border spinner-border-sm"
+    aria-hidden="true"
+  ></span>
   <span role="status">Load more<span data-loadable-remaning></span></span>
 </button>

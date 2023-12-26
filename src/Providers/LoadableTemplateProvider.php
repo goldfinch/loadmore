@@ -9,15 +9,14 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
 {
     public static function get_template_global_variables(): array
     {
-        return [
-            'Loadable',
-            'LoadableWith',
-        ];
+        return ['Loadable', 'LoadableWith'];
     }
 
     public static function Loadable($class)
     {
-        return self::LoadableFetch($class)->renderWith('Goldfinch/Loadable/LoadmoreBase');
+        return self::LoadableFetch($class)->renderWith(
+            'Goldfinch/Loadable/LoadmoreBase',
+        );
     }
 
     public static function LoadableWith($class)
@@ -29,8 +28,7 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
     {
         $config = ss_config('Goldfinch\Loadable\Loadable', 'loadable');
 
-        if ($config && isset($config[$class]))
-        {
+        if ($config && isset($config[$class])) {
             $config = $config[$class];
 
             $list = $class::get();
@@ -51,7 +49,9 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
 
             $return = new ArrayData([
                 'List' => $data->renderWith('Goldfinch/Loadable/Loadable'),
-                'Action' => $data->renderWith('Goldfinch/Loadable/LoadableAction'),
+                'Action' => $data->renderWith(
+                    'Goldfinch/Loadable/LoadableAction',
+                ),
                 'Data' => $data,
             ]);
 

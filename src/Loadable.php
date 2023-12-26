@@ -10,9 +10,7 @@ use SilverStripe\Control\HTTPRequest;
 
 class Loadable extends Controller
 {
-    private static $allowed_actions = [
-        'fetch',
-    ];
+    private static $allowed_actions = ['fetch'];
 
     private static $url_handlers = [
         'POST fetch//$stock!' => 'fetch',
@@ -22,23 +20,19 @@ class Loadable extends Controller
     {
         $stock = $request->param('stock');
 
-        if(!Director::is_ajax() || !$stock)
-        {
+        if (!Director::is_ajax() || !$stock) {
             return false;
         }
 
-        if (!is_sha1($stock))
-        {
+        if (!is_sha1($stock)) {
             return false;
         }
 
         $request_body = file_get_contents('php://input');
         $data = json_decode($request_body, true);
 
-        foreach (ss_config(__CLASS__, 'loadable') as $class => $props)
-        {
-            if ($stock === app_encrypt($class))
-            {
+        foreach (ss_config(__CLASS__, 'loadable') as $class => $props) {
+            if ($stock === app_encrypt($class)) {
                 $loadable = [
                     'class' => $class,
                     'props' => $props,
@@ -47,21 +41,14 @@ class Loadable extends Controller
             }
         }
 
-        if (isset($loadable))
-        {
+        if (isset($loadable)) {
             $class = $loadable['class'];
-            if (method_exists($class, 'loadable'))
-            {
+            if (method_exists($class, 'loadable')) {
                 $list = $class::loadable($data, $request, $props);
-            }
-            else
-            {
+            } else {
                 $list = $class::get();
-
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
 
@@ -69,7 +56,7 @@ class Loadable extends Controller
 
         $countRemains = $list->Count() - $returnList->Count() - $data['start'];
 
-        if(!$list->count()) {
+        if (!$list->count()) {
             return json_encode(false);
         }
 
@@ -80,6 +67,8 @@ class Loadable extends Controller
             'List' => $returnList,
         ]);
 
-        return $this->customise($data)->renderWith('Goldfinch/Loadable/Loadable');
+        return $this->customise($data)->renderWith(
+            'Goldfinch/Loadable/Loadable',
+        );
     }
 }
