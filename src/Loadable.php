@@ -2,7 +2,6 @@
 
 namespace Goldfinch\Loadable;
 
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Controller;
