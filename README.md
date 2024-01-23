@@ -19,26 +19,25 @@ composer require goldfinch/loadable
 
 #### 2. Add key to your **.env**
 
-You can generate it using [**Taz**](https://github.com/goldfinch/taz) module by running CLI command:
-```bash
-php taz generate:crypto-key
-```
-or with php dump
-```php
-<?= bin2hex(random_bytes(16)) ?>
-```
+Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the key.
 
 ```bash
-APP_KEY=""
+php taz app:generate-app-key
 ```
 
-#### 3. Copy the config file
+If you haven't used [**Taz**](https://github.com/goldfinch/taz)🌪️ before, *taz* file must be in your root project folder to be able to use the command above. Just copy it first:
 
 ```bash
-cp vendor/goldfinch/loadable/_config/loadable.yml.example app/_config/loadable.yml
+cp vendor/goldfinch/taz/taz taz
 ```
 
-and amend it as you need
+#### 3. Generate config file
+
+Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the config.
+
+```bash
+php taz vendor:loadable:config loadable
+```
 
 #### 4. Prepare your loadable model
 
