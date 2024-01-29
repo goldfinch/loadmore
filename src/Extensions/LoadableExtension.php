@@ -23,7 +23,7 @@ class LoadableExtension extends DataExtension
         $html->setValue(
             '<p>Template not found. Create one in /themes/' .
                 ss_theme() .
-                '/<strong>Loadable/' .
+                '/<strong>' .
                 $fullpath .
                 '.ss</strong></p>',
         );
