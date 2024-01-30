@@ -2,8 +2,10 @@
 
 namespace Goldfinch\Loadable\Extensions;
 
+use SilverStripe\ORM\DataList;
 use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 
 class LoadableExtension extends DataExtension
@@ -35,8 +37,8 @@ class LoadableExtension extends DataExtension
         return $html;
     }
 
-    public static function loadable($params, $request, $config)
+    public static function loadable(DataList $list, HTTPRequest $request, array $data, array $config): DataList
     {
-        return get_class($this->owner)::get(); //->limit($params['limit'], $params['start']);
+        return $list;
     }
 }

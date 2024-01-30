@@ -6,6 +6,11 @@
   data-loading="false"
   class="btn btn-primary"
   type="button"
+  <% if not CountRemains %>
+  data-loadable-disabled="true"
+  disabled="disabled"
+  style="opacity: 0.25; pointer-events: none;"
+  <% end_if %>
 >
   <span
     class="d-none spinner-border spinner-border-sm"

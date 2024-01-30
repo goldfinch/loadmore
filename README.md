@@ -52,9 +52,14 @@ App\Models\MyLoadableModel:
 *manually*
 
 ```php
-public static function loadable($params, $request, $config)
+use SilverStripe\ORM\DataList;
+use SilverStripe\Control\HTTPRequest;
+
+public static function loadable(DataList $list, HTTPRequest $request, $data, $config): DataList
 {
-    return MyLoadableModel::get(); // ->limit($params['limit'], $params['start']);
+    // apply some additional filtering to the list as needed
+
+    return $list;
 }
 
 public function loadableTemplate()

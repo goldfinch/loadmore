@@ -9,10 +9,10 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "sass": "^1.63.6",
-        "vite-plugin-static-copy": "^0.17.0",
+        "axios": "^1.1.2",
         "jquery": "^3.7.0",
-        "axios": "^1.1.2"
+        "sass": "^1.63.6",
+        "vite-plugin-static-copy": "^0.17.0"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.14",

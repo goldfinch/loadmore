@@ -3,6 +3,8 @@
 namespace Goldfinch\Loadable\Providers;
 
 use SilverStripe\View\ArrayData;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\Controller;
 use SilverStripe\View\TemplateGlobalProvider;
 
 class LoadableTemplateProvider implements TemplateGlobalProvider
@@ -32,6 +34,22 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
             $config = $config[$class];
 
             $list = $class::get();
+
+            if (method_exists($class, 'loadable')) {
+                if (Controller::has_curr()) {
+                    $ctrl = Controller::curr();
+
+                    if ($ctrl) {
+                        $request = $ctrl->getRequest();
+
+                        $loadableData = [
+                            'urlparams' => $_GET,
+                        ];
+
+                        $list = $class::loadable($list, $request, $loadableData, $config);
+                    }
+                }
+            }
 
             $returnList = $list->limit($config['initial_loaded']);
             $countRemains = $list->Count() - $returnList->Count();

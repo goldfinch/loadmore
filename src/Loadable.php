@@ -42,10 +42,23 @@ class Loadable extends Controller
 
         if (isset($loadable)) {
             $class = $loadable['class'];
+
+            $list = $class::get();
+
             if (method_exists($class, 'loadable')) {
-                $list = $class::loadable($data, $request, $props);
-            } else {
-                $list = $class::get();
+
+
+                if (isset($data['urlparams']) && $data['urlparams']) {
+
+                    if ($data['urlparams'][0] == '?')
+                    {
+                        $data['urlparams'] = substr($data['urlparams'], 1);
+                    }
+
+                    parse_str($data['urlparams'], $data['urlparams']);
+                }
+
+                $list = $class::loadable($list, $request, $data, $props);
             }
         } else {
             return false;
