@@ -4,6 +4,7 @@ namespace Goldfinch\Loadable\Providers;
 
 use SilverStripe\View\ArrayData;
 use SilverStripe\Control\Director;
+use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Control\Controller;
 use SilverStripe\View\TemplateGlobalProvider;
 
@@ -11,29 +12,46 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
 {
     public static function get_template_global_variables(): array
     {
-        return ['Loadable', 'LoadableWith'];
+        return ['LoadableAs', 'LoadableWith'];
     }
 
-    public static function Loadable($class)
+    public static function LoadableAs($class, $id = null, $method = null)
     {
-        return self::LoadableFetch($class)->renderWith(
+        return self::LoadableFetch($class, $id, $method)->renderWith(
             'Goldfinch/Loadable/LoadmoreBase',
         );
     }
 
-    public static function LoadableWith($class)
+    public static function LoadableWith($class, $id = null, $method = null)
     {
-        return self::LoadableFetch($class);
+        return self::LoadableFetch($class, $id, $method);
     }
 
-    private static function LoadableFetch($class)
+    private static function LoadableFetch($class, int $id = null, $method = null)
     {
         $config = ss_config('Goldfinch\Loadable\Loadable', 'loadable');
+
+        if ($id && $method) {
+            if (method_exists($class, $method)) {
+                $classMethod = $class . $method; // ! saving $class before it's going to be overwritten
+
+                $list = $class::get()->byID($id);
+                $list = $list->$method();
+
+                if (get_class($list) === PaginatedList::class) {
+                    $list = $list->getList();
+                }
+
+                $class = $list->dataClass;
+            }
+        }
 
         if ($config && isset($config[$class])) {
             $config = $config[$class];
 
-            $list = $class::get();
+            if (!isset($list)) {
+                $list = $class::get();
+            }
 
             if (method_exists($class, 'loadable')) {
                 if (Controller::has_curr()) {
@@ -58,6 +76,8 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
                 'CountRemains' => $countRemains,
                 'List' => $returnList,
                 'LoadableObject' => app_encrypt($class),
+                'LoadableMethod' => isset($classMethod) ? app_encrypt($classMethod) : '',
+                'LoadableMethodID' => $id ?? '',
                 // 'Opts' => new ArrayData([
                 //     'total' => $class::get()->Count(),
                 //     'initial_loaded' => $config['initial_loaded'],

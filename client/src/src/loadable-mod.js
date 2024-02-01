@@ -50,6 +50,8 @@ class Loadable {
 
     let params = action.attr('data-loadable-params');
     const stock = action.attr('data-loadable-stock');
+    const substance = action.attr('data-loadable-substance');
+    const substanceId = action.attr('data-loadable-substance-id');
     const scrollOffset = action.attr('data-loadable-scroll-offset');
     const area = action.closest('[data-loadable-area]');
     const list = area.find('[data-loadable-list]');
@@ -64,6 +66,13 @@ class Loadable {
     params = JSON.parse(params);
     params.start = currentItemsCount;
     params.urlparams = window.location.search;
+
+    if (substance && substance != '') {
+      params.substance = substance;
+    }
+    if (substanceId && substanceId != '') {
+      params.substance_id = substanceId;
+    }
 
     window.axios
       .post(`api/loadable/fetch/${stock}`, params)

@@ -7,6 +7,8 @@ Goldfinch\Loadable\Loadable:
     App\Models\MyLoadableModel:
       initial_loaded: 10
       per_each_load: 10
+      # bridge:
+      #   App\Models\MyLoadableCategoryModel: List
 
 # App\Models\MyLoadableModel:
 #   extensions:

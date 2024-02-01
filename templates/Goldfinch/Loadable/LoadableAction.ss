@@ -2,6 +2,8 @@
   data-loadable-action
   data-loadable-params='{"search": "some search value"}'
   data-loadable-stock="{$LoadableObject}"
+  data-loadable-substance="{$LoadableMethod}"
+  data-loadable-substance-id="{$LoadableMethodID}"
   data-loadable-scroll-offset="10"
   data-loading="false"
   class="btn btn-primary"

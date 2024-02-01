@@ -164,6 +164,8 @@ $Loadable(App\Models\MyLoadableModel)
         data-loadable-action
         data-loadable-params='{"search": "some search value"}'
         data-loadable-stock="{$LoadableObject}"
+        data-loadable-substance="{$LoadableMethod}"
+        data-loadable-substance-id="{$LoadableMethodID}"
         data-loadable-scroll-offset="100"
         data-loading="false"
         class="btn btn-primary"
@@ -176,6 +178,47 @@ $Loadable(App\Models\MyLoadableModel)
     <% end_with %>
   </div>
 <% end_with %>
+```
+
+#### Method 4 (bridge - list through class method)
+
+To use this method, we need to do a few more settings:
+
+1) Call loadable instance passing $ID and $Method
+
+```html
+$Loadable(App\Models\ProjectCategory, $ProjectCategoryID, Projects)
+$LoadableWith(App\Models\ProjectCategory, $ProjectCategoryID, Projects)
+```
+* `Projects` in this example is a method in `ProjectCategory` model that returns `DataList`. It could be basic custom method or `has_many`/`many_many`/`belongs_many_many`
+
+```php
+class ProjectCategory {
+    
+    // as relationship
+    private static $belongs_many_many = [
+        'Projects' => ProjectItem::class,
+    ];
+
+    // or as custom method
+    public function Projects()
+    {
+        // return $this->Projects();
+        return ProjectItem::get();
+    }
+}
+```
+
+
+2) add `bridge` to our config:
+```yml
+Goldfinch\Loadable\Loadable:
+  loadable:
+    App\Models\ProjectItem:
+      initial_loaded: 10
+      per_each_load: 10
+      bridge:
+        App\Models\ProjectCategory: Projects
 ```
 
 ## Events

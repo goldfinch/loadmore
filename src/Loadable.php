@@ -4,6 +4,7 @@ namespace Goldfinch\Loadable;
 
 use SilverStripe\View\ArrayData;
 use SilverStripe\Control\Director;
+use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
 
@@ -41,12 +42,34 @@ class Loadable extends Controller
         }
 
         if (isset($loadable)) {
+
+            if (isset($data['substance']) && isset($data['substance_id']) && isset($loadable['props']['bridge'])) {
+                foreach ($loadable['props']['bridge'] as $class => $method) {
+                    if ($data['substance'] === app_encrypt($class . $method)) {
+                        $loadableMethod = [
+                            'class' => $class,
+                            'method' => $method,
+                        ];
+                        $data['substance_id'] = (int) $data['substance_id'];
+                        break;
+                    }
+                }
+            }
+
             $class = $loadable['class'];
 
-            $list = $class::get();
+            if (isset($loadableMethod) && isset($data['substance_id']) && is_numeric($data['substance_id'])) {
+                $subClass = $loadableMethod['class'];
+                $subMethod = $loadableMethod['method'];
+                $list = $subClass::get()->byID($data['substance_id'])->$subMethod();
+                if (get_class($list) === PaginatedList::class) {
+                    $list = $list->getList();
+                }
+            } else {
+                $list = $class::get();
+            }
 
             if (method_exists($class, 'loadable')) {
-
 
                 if (isset($data['urlparams']) && $data['urlparams']) {
 
