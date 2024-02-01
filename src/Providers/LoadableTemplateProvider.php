@@ -69,7 +69,29 @@ class LoadableTemplateProvider implements TemplateGlobalProvider
                 }
             }
 
-            $returnList = $list->limit($config['initial_loaded']);
+            if (isset($config['dbconfig']))
+            {
+                $configClass = current(array_keys($config['dbconfig']));
+                $configFields = current($config['dbconfig']);
+
+                if (method_exists($configClass, 'current_config')) {
+                    $cfg = $configClass::current_config();
+
+                    if (isset($configFields['initial_loaded']) && $configFields['initial_loaded']) {
+                        $initial_loaded_field = $configFields['initial_loaded'];
+                        if ($cfg->$initial_loaded_field) {
+                            $initial_loaded = $cfg->$initial_loaded_field;
+                        }
+                    }
+                }
+            }
+
+            if (!isset($initial_loaded))
+            {
+                $initial_loaded = $config['initial_loaded'];
+            }
+
+            $returnList = $list->limit($initial_loaded);
             $countRemains = $list->Count() - $returnList->Count();
 
             $data = new ArrayData([

@@ -87,7 +87,29 @@ class Loadable extends Controller
             return false;
         }
 
-        $returnList = $list->limit($props['per_each_load'], $data['start']);
+        if (isset($props['dbconfig']))
+        {
+            $configClass = current(array_keys($props['dbconfig']));
+            $configFields = current($props['dbconfig']);
+
+            if (method_exists($configClass, 'current_config')) {
+                $cfg = $configClass::current_config();
+
+                if (isset($configFields['per_each_load']) && $configFields['per_each_load']) {
+                    $per_each_load_field = $configFields['per_each_load'];
+                    if ($cfg->$per_each_load_field) {
+                        $per_each_load = $cfg->$per_each_load_field;
+                    }
+                }
+            }
+        }
+
+        if (!isset($per_each_load))
+        {
+            $per_each_load = $props['per_each_load'];
+        }
+
+        $returnList = $list->limit($per_each_load, $data['start']);
 
         $countRemains = $list->Count() - $returnList->Count() - $data['start'];
 

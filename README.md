@@ -221,6 +221,40 @@ Goldfinch\Loadable\Loadable:
         App\Models\ProjectCategory: Projects
 ```
 
+## Other options
+
+Properties like `initial_loaded`, `per_each_load` can be declared in database instead. Using [SomeConfig](https://github.com/jonom/silverstripe-someconfig).
+
+1) We need to specify `dbconfig` in our config as shown in the example below
+
+```yml
+Goldfinch\Loadable\Loadable:
+  loadable:
+    App\Models\MyLoadableModel:
+      dbconfig:
+        App\Configs\MyConfig:
+          initial_loaded: InitialLoaded
+          per_each_load: PerEachLoad
+```
+
+2) Based on the example above, our *MyConfig* class would look like this:
+
+```php
+use JonoM\SomeConfig\SomeConfig;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\View\TemplateGlobalProvider;
+
+class MyConfig extends DataObject implements TemplateGlobalProvider
+{
+    use SomeConfig;
+
+    private static $db = [
+        'InitialLoaded' => 'Int(10)',
+        'PerEachLoad' => 'Int(10)',
+    ];
+}
+```
+
 ## Events
 
 Available JavaScript callback events

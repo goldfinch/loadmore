@@ -9,6 +9,10 @@ Goldfinch\Loadable\Loadable:
       per_each_load: 10
       # bridge:
       #   App\Models\MyLoadableCategoryModel: List
+      # dbconfig:
+      #   App\Configs\MyConfig:
+      #     initial_loaded: InitialLoaded
+      #     per_each_load: PerEachLoad
 
 # App\Models\MyLoadableModel:
 #   extensions:
