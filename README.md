@@ -22,7 +22,7 @@ composer require goldfinch/loadable
 Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the key.
 
 ```bash
-php taz app:generate-app-key
+php taz generate:app-key
 ```
 
 If you haven't used [**Taz**](https://github.com/goldfinch/taz)🌪️ before, *taz* file must be in your root project folder to be able to use the command above. Just copy it first:
