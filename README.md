@@ -33,49 +33,20 @@ cp vendor/goldfinch/taz/taz taz
 
 #### 3. Generate config file
 
-Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the config.
+Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the config. It will quickly lead you through the setup and take care of it for you.
 
 ```bash
-php taz vendor:loadable:config loadable
+php taz loadable
 ```
 
-#### 4. Prepare your loadable model
-
-*via extension (recommended)*
-
-```yml
-App\Models\MyLoadableModel:
-  extensions:
-    - Goldfinch\Loadable\Extensions\LoadableExtension
-```
-
-*manually*
-
-```php
-use SilverStripe\ORM\DataList;
-use SilverStripe\Control\HTTPRequest;
-
-public static function loadable(DataList $list, HTTPRequest $request, $data, $config): DataList
-{
-    // apply some additional filtering to the list as needed
-
-    return $list;
-}
-
-public function loadableTemplate()
-{
-    return $this->renderWith('Loadable/MyLoadableModel');
-}
-```
-
-#### 5. Make sure these meta tags are presented in your header
+#### 4. Make sure these meta tags are presented in your header
 
 ```html
 <meta name="csrf-param" content="authenticity_token">
 <meta name="csrf-token" content="{$SecurityID}">
 ```
 
-#### 6. Implement JavaScript front-end component
+#### 5. Implement JavaScript front-end component
 
 *via Silverstripe Requirements PHP*
 
@@ -252,6 +223,29 @@ class MyConfig extends DataObject implements TemplateGlobalProvider
         'InitialLoaded' => 'Int(10)',
         'PerEachLoad' => 'Int(10)',
     ];
+}
+```
+
+## Sidenotes
+
+*manually extended model*
+
+If you don't want to use `LoadableExtension` extension, you can prepare your loadable model 
+
+```php
+use SilverStripe\ORM\DataList;
+use SilverStripe\Control\HTTPRequest;
+
+public static function loadable(DataList $list, HTTPRequest $request, $data, $config): DataList
+{
+    // apply some additional filtering to the list as needed
+
+    return $list;
+}
+
+public function loadableTemplate()
+{
+    return $this->renderWith('Loadable/MyLoadableModel');
 }
 ```
 
