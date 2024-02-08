@@ -25,13 +25,13 @@ class LoadableCommand extends GeneratorCommand
         $question = new ChoiceQuestion(
             'How to extend this model?',
             ['via extension (recommended)', 'manually'],
-            0,
+            'via extension (recommended)',
         );
         $question->setErrorMessage('The selection %s is invalid.');
         $extensionType = $helper->ask($input, $output, $question);
 
-        $initial_loaded = $this->askStringQuestion('Set amount of initially loaded items (10 by default):', $input, $output, 10);
-        $per_each_load = $this->askStringQuestion('Set amount of loaded items per further load (10 by default):', $input, $output, 10);
+        $initial_loaded = $this->askStringQuestion('Set amount of initially loaded items:', $input, $output, 10);
+        $per_each_load = $this->askStringQuestion('Set amount of loaded items per further load:', $input, $output, 10);
 
         $loadableOptions = [
             'initial_loaded' => (int) $initial_loaded,
@@ -94,7 +94,7 @@ class LoadableCommand extends GeneratorCommand
 
         if ($extensionType == 'manually') {
             $io = new InputOutput($input, $output);
-            $io->display('For manual setup please, refer to the documentation: https://github.com/goldfinch/loadable?tab=readme-ov-file#4-prepare-your-loadable-model');
+            $io->display('For manual setup please, refer to the documentation: https://github.com/goldfinch/loadable?tab=readme-ov-file#sidenotes');
         } else {
 
             $config = $this->findYamlConfigFileByName('app-loadable');
