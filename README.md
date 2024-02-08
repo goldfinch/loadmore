@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/goldfinch/loadable.svg?labelColor=333&color=F8C630&label=Downloads)](https://packagist.org/packages/goldfinch/loadable)
 [![License](https://img.shields.io/packagist/l/goldfinch/loadable.svg?labelColor=333&color=F8C630&label=License)](https://packagist.org/packages/goldfinch/loadable) 
 
-Load more implementation ⏳ for Silverstripe with front-end component 🌀. Easy to use and customize.
+**Load more** implementation ⏳ for Silverstripe with front-end component 🌀. Easy to use and customize.
 
 ![Screenshot](screenshots/loadmore.jpeg)
 
