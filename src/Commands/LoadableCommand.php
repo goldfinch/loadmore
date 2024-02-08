@@ -19,11 +19,11 @@ class LoadableCommand extends GeneratorCommand
 
     protected function execute($input, $output): int
     {
-        $className = $this->askClassNameQuestion('What [model class name] do we need to make loadable? (eg: Article, App\Models\BlogPost)', $input, $output);
+        $className = $this->askClassNameQuestion('What [model class name] does need to be loadable? (eg: Article, App\Models\BlogPost)', $input, $output);
 
         $helper = $this->getHelper('question');
         $question = new ChoiceQuestion(
-            'How to extend this model?',
+            'How would you like to extend this model?',
             ['via extension (recommended)', 'manually'],
             'via extension (recommended)',
         );
@@ -54,7 +54,7 @@ class LoadableCommand extends GeneratorCommand
         $dbconfig = $this->askStringQuestion('Set up db config? (y/n)', $input, $output, 'n');
 
         if ($dbconfig == 'y' || $dbconfig == 'Y') {
-            $dbconfig_className = $this->askClassNameQuestion('What [class name] of the config to use? (eg: MyConfig, App\Configs\MyConfig)', $input, $output);
+            $dbconfig_className = $this->askClassNameQuestion('What [class name] of the config that needs to be used? (eg: MyConfig, App\Configs\MyConfig)', $input, $output);
             $dbconfig_initial_loaded = $this->askStringQuestion('Set represent config field for [initial_loaded]', $input, $output);
             $dbconfig_per_each_load = $this->askStringQuestion('Set represent config field for [per_each_load]', $input, $output);
 
