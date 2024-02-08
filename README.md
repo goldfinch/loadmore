@@ -27,10 +27,6 @@ php taz generate:app-key
 
 >> If you haven't used [**Taz**](https://github.com/goldfinch/taz)🌪️ before, *taz* file must be presented in your root project folder `cp vendor/goldfinch/taz/taz taz`
 
-```bash
-cp vendor/goldfinch/taz/taz taz
-```
-
 #### 3. Generate config file
 
 Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the config. It will quickly lead you through the setup and take care of it for you.
