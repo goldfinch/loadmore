@@ -10,6 +10,17 @@
 
 ![Screenshot](screenshots/loadmore.jpeg)
 
+## Available Taz commands
+
+If you haven't used [**Taz**](https://github.com/goldfinch/taz)🌪️ before, *taz* file must be presented in your root project folder `cp vendor/goldfinch/taz/taz taz`
+
+---
+
+> Extend model making it loadable
+```bash
+php taz loadable
+```
+
 ## Install
 
 #### 1. Install module
@@ -19,13 +30,11 @@ composer require goldfinch/loadable
 
 #### 2. Add key to your **.env**
 
-Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate the key.
+Use [**Taz**](https://github.com/goldfinch/taz)🌪️ to generate and add the key.
 
 ```bash
 php taz generate:app-key
 ```
-
->> If you haven't used [**Taz**](https://github.com/goldfinch/taz)🌪️ before, *taz* file must be presented in your root project folder `cp vendor/goldfinch/taz/taz taz`
 
 #### 3. Generate config file
 
@@ -66,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-#### 7. Create a loadable template
+#### 6. Create a loadable template
 
 All loadable templates are stored within a single folder `templates/Loadable`. The name should be the same as your targeted model's name.
 
@@ -177,7 +186,7 @@ class ProjectCategory {
 ```
 
 
-2) add `bridge` to our config:
+2) Add `bridge` to our config:
 ```yml
 Goldfinch\Loadable\Loadable:
   loadable:
@@ -190,7 +199,7 @@ Goldfinch\Loadable\Loadable:
 
 ## Other options
 
-Properties like `initial_loaded`, `per_each_load` can be declared in database instead. Using [SomeConfig](https://github.com/jonom/silverstripe-someconfig).
+Properties like `initial_loaded`, `per_each_load` can be declared in database instead. Using [SomeConfig](https://github.com/jonom/silverstripe-someconfig). If you use [**Taz**](https://github.com/goldfinch/taz)🌪️ command `php taz loadable`, it will handle this setup for you anyway, but for your reference:
 
 1) We need to specify `dbconfig` in our config as shown in the example below
 
