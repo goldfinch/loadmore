@@ -69,9 +69,34 @@ Requirements::javascript('goldfinch/loadable:client/dist/loadable.js');
 
 ```js
 import Loadable from '..../vendor/goldfinch/loadable/client/src/src/loadable-mod';
+// import Loadable from '@goldfinch/loadable/client/src/src/loadable-mod'; // with alias
 
 document.addEventListener('DOMContentLoaded', () => {
   new Loadable();
+});
+```
+
+```js
+// vite.config.js
+// * only if you use alias import above
+
+import { defineConfig } from 'vite';
+
+export default defineConfig(({ command, mode }) => {
+
+  return {
+
+    // ..
+
+    resolve: {
+      alias: [
+        { find: '@goldfinch', replacement: fileURLToPath(new URL('./vendor/goldfinch', import.meta.url)) },
+      ],
+    },
+
+    // ..
+
+  };
 });
 ```
 
