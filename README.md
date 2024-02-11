@@ -21,6 +21,11 @@ If you haven't used [**Taz**](https://github.com/goldfinch/taz)🌪️ before, *
 php taz loadable
 ```
 
+> Create loadable template
+```bash
+php taz make:loadable-template
+```
+
 ## Install
 
 #### 1. Install module
@@ -100,7 +105,9 @@ export default defineConfig(({ command, mode }) => {
 });
 ```
 
-#### 6. Create a loadable template
+#### 6. Create a loadable template (FYI)
+
+The **Taz** command in [the third step](https://github.com/goldfinch/loadable?tab=readme-ov-file#3-generate-config-file) above would create the loadable template for your model so you don't really need to do anything here. Just for your information, if you are curious about how the templates initiate:
 
 All loadable templates are stored within a single folder `templates/Loadable`. The name should be the same as your targeted model's name.
 
@@ -133,7 +140,7 @@ To call the loadable area use one of the examples below for further customizatio
 #### Method 1 (quick preview for test)
 
 ```html
-$Loadable(App\Models\MyLoadableModel)
+$LoadableAs(App\Models\MyLoadableModel)
 ```
 
 #### Method 2 (basic)
@@ -188,7 +195,7 @@ To use this method, we need to do a few more settings:
 1) Call loadable instance passing $ID and $Method
 
 ```html
-$Loadable(App\Models\ProjectCategory, $ProjectCategoryID, Projects)
+$LoadableAs(App\Models\ProjectCategory, $ProjectCategoryID, Projects)
 $LoadableWith(App\Models\ProjectCategory, $ProjectCategoryID, Projects)
 ```
 * `Projects` in this example is a method in `ProjectCategory` model that returns `DataList`. It could be basic custom method or `has_many`/`many_many`/`belongs_many_many`

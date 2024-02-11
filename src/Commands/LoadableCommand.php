@@ -102,9 +102,32 @@ class LoadableCommand extends GeneratorCommand
             $this->updateYamlConfig(
                 $config,
                 $className . '.extensions',
-                'Goldfinch\Loadable\Extensions\LoadableExtension',
+                ['Goldfinch\Loadable\Extensions\LoadableExtension'],
             );
         }
+
+        // add loadable template
+
+        $slashesClassName = explode('\\', $className);
+        $extraPath = '';
+
+        if (count($slashesClassName)) {
+            $templateName = end($slashesClassName);
+
+            foreach ($slashesClassName as $slashSp) {
+                if ($slashSp != $templateName) {
+                    $extraPath .= $slashSp . '/';
+                }
+            }
+        } else {
+            $templateName = $className;
+        }
+
+        $command = $this->getApplication()->find('make:loadable-template');
+        $command->run(new ArrayInput([
+            'name' => $templateName,
+            '--extrapath' => $extraPath,
+        ]), $output);
 
         return Command::SUCCESS;
     }
